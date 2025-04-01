@@ -30,10 +30,14 @@ public class BallPhysicsShooter : MonoBehaviour
             ShootBall();
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("Ball exited");
+    }
 
     // ShootBall picks a random target and applies velocity to the ball.
     void ShootBall()
-    {
+    {   
         if (goalTargets.Length == 0)
         {
             Debug.LogError("No goal targets assigned!");

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 20eb9dbb81333f34bb82a1a06326dd95
+timeCreated: 1506406154
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/stadium/shaders/AlphaMap.shader
+  uploadId: 338952

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b156eeeab60f4b3499a872f5af3d8d58
+timeCreated: 1507023304
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/player/player_prefabs/sample_player_team_B/model_B_000_GK.prefab
+  uploadId: 338952

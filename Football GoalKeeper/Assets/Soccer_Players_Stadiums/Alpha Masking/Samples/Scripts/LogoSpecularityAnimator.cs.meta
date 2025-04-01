@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b674d74b3d35e3c46bcc678d80bdd8cf
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/Alpha Masking/Samples/Scripts/LogoSpecularityAnimator.cs
+  uploadId: 338952

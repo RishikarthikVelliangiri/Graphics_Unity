@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 0802fcbfd8301c142848ebc4789b4f92
+timeCreated: 1506316136
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/Scripts/FogController.cs
+  uploadId: 338952

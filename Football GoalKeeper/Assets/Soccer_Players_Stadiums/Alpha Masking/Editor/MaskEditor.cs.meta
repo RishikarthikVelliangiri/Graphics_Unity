@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d383d5c681eab9144b3fcc47c79385bc
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/Alpha Masking/Editor/MaskEditor.cs
+  uploadId: 338952

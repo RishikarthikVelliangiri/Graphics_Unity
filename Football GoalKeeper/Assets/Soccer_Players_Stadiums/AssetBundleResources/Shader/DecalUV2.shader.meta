@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 97a9fd4fb57279a49b08b9b2aea4d535
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/Shader/DecalUV2.shader
+  uploadId: 338952

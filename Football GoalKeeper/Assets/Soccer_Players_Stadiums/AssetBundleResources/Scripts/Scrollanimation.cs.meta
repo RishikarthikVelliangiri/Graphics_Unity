@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2dc87b36321530647a5cd8c218438077
+timeCreated: 1506402013
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/Scripts/Scrollanimation.cs
+  uploadId: 338952

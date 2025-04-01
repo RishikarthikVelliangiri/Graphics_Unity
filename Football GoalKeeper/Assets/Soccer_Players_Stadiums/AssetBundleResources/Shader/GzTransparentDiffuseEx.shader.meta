@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cea9fb99e85081543858494914a587dc
+timeCreated: 1462512103
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105891
+  packageName: Soccer Players & Stadiums Pack
+  packageVersion: 1.4
+  assetPath: Assets/Soccer_Players_Stadiums/AssetBundleResources/Shader/GzTransparentDiffuseEx.shader
+  uploadId: 338952

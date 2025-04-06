@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class BallPhysicsShooter : MonoBehaviour
 {
-    [SerializeField] private Transform[] goalTargets; // Random goal target positions assigned in the Inspector
-    [SerializeField] private Rigidbody rb;            // Ball's Rigidbody component
-    [SerializeField] private float shotForce = 20f;     // Force multiplier for the ball
-    [SerializeField] private GameObject kicker;         // Reference to the player model (kicker)
-    [SerializeField] private GameObject goalkeeper;     // Reference to the goalkeeper
+    [SerializeField] private Transform[] goalTargets;  // Random goal target positions assigned in the Inspector
+    [SerializeField] private Rigidbody rb;             // Ball's Rigidbody component
+    [SerializeField] private float shotForce = 20f;      // Force multiplier for the ball
+    [SerializeField] private GameObject kicker;          // Reference to the player model (kicker)
+    [SerializeField] private GameObject goalkeeper;      // Reference to the goalkeeper
+    [SerializeField] private GameObject[] controllers;   // VR controller objects (assign in Inspector)
 
-    private Vector3 initialBallPosition;     // Initial ball position
-    private Vector3 initialKickerPosition;   // Initial kicker (player) position
+    private Vector3 initialBallPosition;      // Initial ball position
+    private Vector3 initialKickerPosition;    // Initial kicker (player) position
 
     void Start()
     {
@@ -58,6 +59,19 @@ public class BallPhysicsShooter : MonoBehaviour
         {
             Debug.Log("Goalkeeper collided with the ball. Bouncing back.");
             BounceBall(collision);
+        }
+        // Check if the collided object is one of the assigned VR controllers.
+        else
+        {
+            foreach (GameObject controller in controllers)
+            {
+                if (collision.gameObject == controller)
+                {
+                    Debug.Log("VR controller collided with the ball. Bouncing off.");
+                    BounceBall(collision);
+                    break;
+                }
+            }
         }
     }
 

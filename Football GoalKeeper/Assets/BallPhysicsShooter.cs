@@ -5,12 +5,16 @@ public class BallPhysicsShooter : MonoBehaviour
     [SerializeField] private Transform[] goalTargets;  // Random goal target positions assigned in the Inspector
     [SerializeField] private Rigidbody rb;             // Ball's Rigidbody component
     [SerializeField] private float shotForce = 20f;      // Force multiplier for the ball
-    [SerializeField] private GameObject kicker;          // Reference to the player model (kicker)
+    [SerializeField] private GameObject kicker;          // Reference to the striker (player model)
     [SerializeField] private GameObject goalkeeper;      // Reference to the goalkeeper
-    [SerializeField] private GameObject[] controllers;   // VR controller objects (assign in Inspector)
+    [SerializeField] private GameObject[] controllers;   // VR controller objects assigned in the Inspector
 
-    private Vector3 initialBallPosition;      // Initial ball position
-    private Vector3 initialKickerPosition;    // Initial kicker (player) position
+    // Animator for the striker's reanimation and trigger parameter for the kick animation
+    [SerializeField] private Animator strikerAnimator;
+    [SerializeField] private string strikerResetTrigger = "ReKick";
+
+    private Vector3 initialBallPosition;   // Initial ball position
+    private Vector3 initialKickerPosition; // Initial striker (kicker) position
 
     void Start()
     {
@@ -27,18 +31,18 @@ public class BallPhysicsShooter : MonoBehaviour
 
     void Update()
     {
+        // Revert to using the Enter key to trigger the reset and shot
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            // Reset positions for both the ball and kicker.
             ResetBallPosition();
             ResetKickerPosition();
 
-            // Optional: Trigger the kick animation if the kicker has an Animator.
-            // Animator anim = kicker.GetComponent<Animator>();
-            // if (anim != null)
-            //     anim.SetTrigger("Kick");
+            // Trigger striker reanimation (kicking animation)
+            if (strikerAnimator != null && !string.IsNullOrEmpty(strikerResetTrigger))
+            {
+                strikerAnimator.SetTrigger(strikerResetTrigger);
+            }
 
-            // Shoot the ball after resetting.
             ShootBall();
         }
     }
@@ -48,13 +52,13 @@ public class BallPhysicsShooter : MonoBehaviour
     {
         Debug.Log("Ball collided with object: " + collision.gameObject.name);
 
-        // If the ball collides with the kicker, shoot the ball.
+        // If the ball collides with the striker (kicker), trigger a shot.
         if (collision.gameObject == kicker)
         {
             Debug.Log("Kicker collided with the ball.");
             ShootBall();
         }
-        // If the ball collides with the goalkeeper, bounce it back.
+        // If it collides with the goalkeeper, bounce it back.
         else if (collision.gameObject == goalkeeper)
         {
             Debug.Log("Goalkeeper collided with the ball. Bouncing back.");
@@ -75,10 +79,10 @@ public class BallPhysicsShooter : MonoBehaviour
         }
     }
 
-    // BounceBall calculates a reflection off the collision normal and applies that velocity.
+    // BounceBall calculates a reflection based on the collision normal and applies that velocity.
     void BounceBall(Collision collision)
     {
-        // Get the first contact point and use its normal for reflection.
+        // Get the first contact point's normal for reflection.
         Vector3 bounceDirection = collision.contacts[0].normal;
         // Ensure an upward component.
         bounceDirection.y = Mathf.Abs(bounceDirection.y);
@@ -86,9 +90,9 @@ public class BallPhysicsShooter : MonoBehaviour
         Debug.Log("Ball bounced with direction: " + bounceDirection);
     }
 
-    // ShootBall chooses a random target and applies velocity to the ball.
+    // ShootBall selects a random target and applies velocity to the ball.
     void ShootBall()
-    {   
+    {
         if (goalTargets.Length == 0)
         {
             Debug.LogError("No goal targets assigned!");
@@ -97,22 +101,19 @@ public class BallPhysicsShooter : MonoBehaviour
 
         // Choose a random target.
         Transform target = goalTargets[Random.Range(0, goalTargets.Length)];
-
-        // Calculate horizontal direction toward the target.
+        // Calculate the horizontal direction toward the target.
         Vector3 directionToTarget = target.position - transform.position;
-        directionToTarget.y = 0; // Keep shot mostly horizontal.
+        directionToTarget.y = 0; // Ensure shot is mostly horizontal.
         Vector3 shotDirection = directionToTarget.normalized;
         
         // Add a slight upward arc.
         shotDirection.y = 0.3f;
 
         Debug.Log("Ball shot towards: " + target.position + " with direction: " + shotDirection);
-
-        // Apply velocity to the ball.
         rb.linearVelocity = shotDirection * shotForce;
     }
 
-    // ResetBallPosition resets the ball to its original position and stops its motion.
+    // ResetBallPosition resets the ball to its initial position and stops its motion.
     public void ResetBallPosition()
     {
         transform.position = initialBallPosition;
@@ -121,7 +122,7 @@ public class BallPhysicsShooter : MonoBehaviour
         Debug.Log("Ball reset to initial position: " + initialBallPosition);
     }
 
-    // ResetKickerPosition resets the kicker (player) to its original position.
+    // ResetKickerPosition resets the striker (kicker) to its original position.
     public void ResetKickerPosition()
     {
         if (kicker != null)

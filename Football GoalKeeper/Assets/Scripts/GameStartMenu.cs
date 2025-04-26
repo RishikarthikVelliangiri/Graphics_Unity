@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-// You need this namespace for EditorApplication, but only include it in the editor
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+using UnityEngine.SceneManagement; // Make sure SceneTransitionManager is handled elsewhere or included if needed
 
 public class GameStartMenu : MonoBehaviour
 {
@@ -20,10 +17,10 @@ public class GameStartMenu : MonoBehaviour
     public Button aboutButton;
     public Button quitButton;
 
-    // Assuming SceneTransitionManager is correctly set up elsewhere
-    // public SceneTransitionManager sceneTransitionManager; // Make sure you have a reference if needed, maybe singleton pattern is used.
-
     public List<Button> returnButtons;
+
+    // You might need a reference to your SceneTransitionManager if it's not a singleton
+    // public SceneTransitionManager sceneTransitionManager;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +31,7 @@ public class GameStartMenu : MonoBehaviour
         startButton.onClick.AddListener(StartGame);
         optionButton.onClick.AddListener(EnableOption);
         aboutButton.onClick.AddListener(EnableAbout);
-        quitButton.onClick.AddListener(QuitGame); // This listener is already correct
+        quitButton.onClick.AddListener(QuitGame); // This already calls QuitGame
 
         foreach (var item in returnButtons)
         {
@@ -44,59 +41,60 @@ public class GameStartMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit button clicked!"); // Good for testing
+        Debug.Log("Quit Game Requested!"); // Good to add a log
 
-        // Use preprocessor directives to handle editor vs. build
+        // This preprocessor directive checks if we are running in the Unity Editor
         #if UNITY_EDITOR
-            // If we are running in the Unity Editor
+            // If in the editor, stop playing the scene.
             UnityEditor.EditorApplication.isPlaying = false;
             Debug.Log("Stopping Play Mode in Editor.");
         #else
-            // If we are running in a built game
+            // If in a build, quit the application.
             Application.Quit();
-            Debug.Log("Quitting Application.");
+            Debug.Log("Application Quit requested (Build).");
         #endif
     }
 
     public void StartGame()
     {
         HideAll();
-        // Ensure SceneTransitionManager and its singleton instance exist
+        // Make sure SceneTransitionManager is accessible, e.g., via a static singleton instance
+        // If SceneTransitionManager.singleton doesn't exist, you'll need another way to reference it.
         if (SceneTransitionManager.singleton != null)
         {
-            SceneTransitionManager.singleton.GoToSceneAsync(1); // Assuming scene index 1 is your game scene
+             SceneTransitionManager.singleton.GoToSceneAsync(1);
         }
         else
         {
-            Debug.LogError("SceneTransitionManager singleton not found!");
-            // Fallback or alternative scene loading if necessary
-            // UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            Debug.LogError("SceneTransitionManager singleton not found! Cannot start game.");
+            // Fallback or alternative scene loading if needed
+            // SceneManager.LoadScene(1); // Example fallback
         }
     }
 
     public void HideAll()
     {
-        mainMenu.SetActive(false);
-        options.SetActive(false);
-        about.SetActive(false);
+        if (mainMenu != null) mainMenu.SetActive(false);
+        if (options != null) options.SetActive(false);
+        if (about != null) about.SetActive(false);
     }
 
     public void EnableMainMenu()
     {
-        mainMenu.SetActive(true);
-        options.SetActive(false);
-        about.SetActive(false);
+        if (mainMenu != null) mainMenu.SetActive(true);
+        if (options != null) options.SetActive(false);
+        if (about != null) about.SetActive(false);
     }
     public void EnableOption()
     {
-        mainMenu.SetActive(false);
-        options.SetActive(true);
-        about.SetActive(false);
+        if (mainMenu != null) mainMenu.SetActive(false);
+        if (options != null) options.SetActive(true);
+        if (about != null) about.SetActive(false);
     }
     public void EnableAbout()
     {
-        mainMenu.SetActive(false);
-        options.SetActive(false);
-        about.SetActive(true);
+        if (mainMenu != null) mainMenu.SetActive(false);
+        if (options != null) options.SetActive(false);
+        if (about != null) about.SetActive(true);
     }
 }

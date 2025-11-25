@@ -129,8 +129,4 @@ If you want, I can create initial Issues or a CONTRIBUTING.md template for this 
 Project maintained by RishikarthikVelliangiri.
 - GitHub: https://github.com/RishikarthikVelliangiri
 
----
 
-If you'd like, I can:
-- Inspect the repository and replace the placeholders with exact scene names, script summaries, shader descriptions, and add inline screenshots.
-- Commit this README.md to the repository on a new branch and open a pull request. Tell me which you'd prefer and whether you want me to push it directly.
